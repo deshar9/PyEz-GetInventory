@@ -4,7 +4,7 @@ import yaml,sys
 router_name = "192.168.0.5"
 
 with open("table_views.yml", 'r') as tvs:
-    globals().update(FactoryLoader().load(yaml.load(tvs)))
+    globals().update(FactoryLoader().load(yaml.safe_load(tvs)))
 with Device(host=router_name, user='deshar', password='9miraihe', gather_facts=False) as dev:
     inv = ChassisInventoryTable(dev)
     inv.get()
